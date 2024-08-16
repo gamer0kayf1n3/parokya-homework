@@ -1,25 +1,88 @@
 <html>
-	<head>
-		<title>Today's Activities</title>
-		<style>
-			body {
-				margin: 10pt;
-			}
-			#footer {
-				width: 100%;
-				position: fixed;
-				bottom: 0px;
-				padding: 30pt;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="header"></div>
-		<div id="body"></div>
-		<div id="footer">
-			<br>
-			<p>Built for Parokya ni Steven members.</p>
-			
+
+<head>
+	<title>Today's Activities</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+		* {
+			font-family: "Urbanist", sans-serif;
+			/*font-weight: 500;*/
+			font-style: normal;
+		}
+		h1 {
+			font-weight: 900;
+			font-size: 40pt;
+			margin: 0 0 0.2in;
+		}
+
+		body {
+			padding: 0;
+			margin: 0.1in;
+		}
+
+		#footer {
+			width: 100%;
+			padding: 0;
+			bottom: 0;
+			position: fixed;
+		}
+
+		.banner {
+			height: 0.65in;
+			width: auto;
+			padding: 0;
+		}
+
+		#footer {
+			text-align: right;
+		}
+
+		#footer p {
+			margin: 0pt;
+			padding-right: 10pt;
+		}
+		#body #activitylist .item {
+			padding: 5px 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="header">
+		<h1 id="timeEl"></h1>
+		<h2>Activities, Homework, and etc.</h2>
+		<hr>
+	</div>
+	<div id="body">
+		<div id="activitylist">
+			{% for x in worklistData %}
+				<div class="item">
+					<span class="title">{{x.name}}</span><br>
+					<span class="deadline">{{x.end if x.end else x.start}}</span>
+				</div>
+			{% endfor %}
 		</div>
-	</body>
+	</div>
+	<div id="footer">
+		<hr>
+		<img src="/static/parokyabanner2.png" alt="Parokya Banner" class="banner">
+		<p>Built for Parokya ni Steven members.</p>
+
+	</div>
+	<script>
+		const now = new Date();
+
+		const options = {
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		};
+		const formatter = new Intl.DateTimeFormat('en-US', options);
+		const formattedDate = formatter.format(now);
+		document.getElementById("timeEl").innerText = formattedDate;
+	</script>
+</body>
+
 </html>

@@ -1,20 +1,12 @@
-import os
-from notion_client import Client
+from flask import Flask, render_template
+import notion_grabber
+app = Flask(__name__)
 
-notion = Client(auth=open("token").read().strip())
-
-from pprint import pprint
-import json
-d = notion.databases.query(database_id="1135332ccd614ae6bc7e962d3c4779d1")
-for x in d["results"]:
-   x = x["properties"]
-   pprint({
-     "start": x["Deadline"]["date"]["start"],
-     "end": x["Deadline"]["date"]["end"],
-     "status": x["Status"]["status"]["name"],
-     "type": x["Type"]["select"]["name"],
-     "subject": x["Subject"]["select"]["name"],
-     "name": x["Name"]["title"][0]["plain_text"]
-   })
-   #pprint(x["properties"]["Name"]["title"][0]["plain_text"])
-# https://www.notion.so/1135332ccd614ae6bc7e962d3c4779d1
+@app.route("/")
+def main():
+  worklist = notion_grabber.Worklist()
+  worklistData = worklist.fetch()
+  print(worklistData)
+  return render_template("index.html", worklistData=worklistData)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.run(host="0.0.0.0", port=8080, debug=True)
