@@ -4,28 +4,45 @@
 	<title>Today's Activities</title>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
-
+		body {
+			background-color: rgb(234, 243, 236);
+		}
 		* {
 			font-family: "Urbanist", sans-serif;
 			/*font-weight: 500;*/
 			font-style: normal;
 		}
+
 		h1 {
 			font-weight: 900;
 			font-size: 40pt;
 			margin: 0 0 0.2in;
 		}
 
-		body {
-			padding: 0;
-			margin: 0.1in;
+		@media screen {
+			body {
+				padding: 0;
+				margin: 0.25in;
+			}
+
+			#footer {
+				width: 100%;
+				padding: 0;
+			}
 		}
 
-		#footer {
-			width: 100%;
-			padding: 0;
-			bottom: 0;
-			position: fixed;
+		@media print {
+			body {
+				padding: 0;
+				margin: 0in;
+			}
+
+			#footer {
+				width: 100%;
+				padding: 0;
+				bottom: 0;
+				position: fixed;
+			}
 		}
 
 		.banner {
@@ -42,6 +59,7 @@
 			margin: 0pt;
 			padding-right: 10pt;
 		}
+
 		#body #activitylist .item {
 			padding: 5px 0;
 		}
@@ -57,10 +75,10 @@
 	<div id="body">
 		<div id="activitylist">
 			{% for x in worklistData %}
-				<div class="item">
-					<span class="title">{{x.name}}</span><br>
-					<span class="deadline">{{x.end if x.end else x.start}}</span>
-				</div>
+			<div class="item">
+				<span class="title">{{x.name}}</span><br>
+				<span class="deadline">{{x.end if x.end else x.start}}</span>
+			</div>
 			{% endfor %}
 		</div>
 	</div>
