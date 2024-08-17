@@ -4,6 +4,10 @@
 	<title>Today's Activities</title>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+		h1,h2,h3,h4,h5,h6 {
+			margin: 0.15	in 0;
+		}
 		body {
 			background-color: rgb(234, 243, 236);
 		}
@@ -63,6 +67,11 @@
 		#body #activitylist .item {
 			padding: 5px 0;
 		}
+		#body > div {
+			padding: 1pt 8pt;
+			margin: 5pt;
+			background-color: rgb(70, 229, 110);
+		}
 	</style>
 </head>
 
@@ -74,6 +83,7 @@
 	</div>
 	<div id="body">
 		<div id="activitylist">
+			<h3>Due Deadlines</h3>
 			{% for x in worklistData %}
 			<div class="item">
 				<span class="title">{{x.name}}</span><br>
@@ -81,6 +91,12 @@
 			</div>
 			{% endfor %}
 		</div>
+		<div id="todayactivities">
+			<h3>Today's Activities</h3>
+		</div>
+		<div id=""></div>
+		<div></div>
+		<div></div>
 	</div>
 	<div id="footer">
 		<hr>
