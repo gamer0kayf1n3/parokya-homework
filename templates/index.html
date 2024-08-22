@@ -5,12 +5,19 @@
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
-		h1,h2,h3,h4,h5,h6 {
-			margin: 0.15	in 0;
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin: 0.15in 0;
 		}
+
 		body {
 			background-color: rgb(234, 243, 236);
-		}
+		}	
+
 		* {
 			font-family: "Urbanist", sans-serif;
 			/*font-weight: 500;*/
@@ -67,10 +74,22 @@
 		#body #activitylist .item {
 			padding: 5px 0;
 		}
-		#body > div {
+
+		#body .box {
+			display: flex;
 			padding: 1pt 8pt;
 			margin: 5pt;
 			background-color: rgb(70, 229, 110);
+			flex-direction: column;
+			flex-basis: 100%;
+			flex: 1;
+		}
+
+		.row {
+			display: flex;
+			justify-content: space-evenly;
+			align-items: stretch;
+			flex-wrap: wrap;
 		}
 	</style>
 </head>
@@ -82,21 +101,23 @@
 		<hr>
 	</div>
 	<div id="body">
-		<div id="activitylist">
-			<h3>Due Deadlines</h3>
-			{% for x in worklistData %}
-			<div class="item">
-				<span class="title">{{x.name}}</span><br>
-				<span class="deadline">{{x.end if x.end else x.start}}</span>
+		<div class="row">
+			<div class="box" id="activitylist">
+				<h3>Due Deadlines</h3>
+				{% for x in worklistData %}
+				<div class="item">
+					<span class="title">{{x.name}}</span><br>
+					<span class="deadline">{{x.end if x.end else x.start}}</span>
+				</div>
+				{% endfor %}
 			</div>
-			{% endfor %}
+			<div class="box" id="todayactivities">
+				<h3>Today's Activities</h3>
+			</div>
 		</div>
-		<div id="todayactivities">
-			<h3>Today's Activities</h3>
-		</div>
-		<div id=""></div>
-		<div></div>
-		<div></div>
+		<div class="box" id=""></div>
+		<div class="box"></div>
+		<div class="box"></div>
 	</div>
 	<div id="footer">
 		<hr>
