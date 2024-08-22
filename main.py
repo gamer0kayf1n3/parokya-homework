@@ -23,9 +23,9 @@ def save_pdf():
 def watch_for_pdf():
   # android method
   while True:
-    for x in os.listdir("~/storage/downloads"):
+    for x in os.listdir("../storage/downloads"):
       if x == "Today's Activities.pdf":
-        file = os.path.join("~/storage/downloads", "Today's Activities.pdf")
+        file = os.path.join("../storage/downloads", "Today's Activities.pdf")
         shutil.copy2(file, ".", follow_symlinks=True)
         os.remove(file)
         break
