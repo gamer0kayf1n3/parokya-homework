@@ -24,7 +24,7 @@ def watch_for_pdf():
   # android method
   while True:
     for x in os.listdir("../storage/downloads"):
-      if x == "Today's Activities.pdf":
+      if x == "Today's Activities.PDF":
         file = os.path.join("../storage/downloads", "Today's Activities.PDF")
         shutil.copy2(file, ".", follow_symlinks=True)
         os.remove(file)
