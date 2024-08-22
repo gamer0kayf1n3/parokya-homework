@@ -25,7 +25,7 @@ def watch_for_pdf():
   while True:
     for x in os.listdir("../storage/downloads"):
       if x == "Today's Activities.pdf":
-        file = os.path.join("../storage/downloads", "Today's Activities.pdf")
+        file = os.path.join("../storage/downloads", "Today's Activities.PDF")
         shutil.copy2(file, ".", follow_symlinks=True)
         os.remove(file)
         break
