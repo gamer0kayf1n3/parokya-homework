@@ -40,6 +40,7 @@ def main():
 
 
 is_android: bool = hasattr(sys, 'getandroidapilevel')
+print(is_android)
 if is_android: # i host this script on termux too
   t = Thread(target=watch_for_pdf)
   t.start()
