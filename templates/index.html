@@ -113,6 +113,24 @@
 			</div>
 			<div class="box" id="todayactivities">
 				<h3>Today's Activities</h3>
+				<table>
+					<tr>
+						<th>Subject</th>
+						<th>Activities</th>
+						<th>Remarks</th>
+					</tr>
+					{% for x in todayData %}
+					<tr>
+						<td class="title">{{x.name}}</td>
+						<td>
+							<span class="tags">{{", ".join(x.tags)}}</span>
+						</td>
+						<td>
+							<span class="remarks">{{x.remarks}}</span>
+						</td>
+				</tr>
+				{% endfor %}
+				</table>
 			</div>
 		</div>
 		<div class="box" id=""></div>

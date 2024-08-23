@@ -25,6 +25,28 @@ class Worklist:
             simplified_datalist.append(temp)
         return simplified_datalist
 
+class TodayActivities:
+    def __init__(self):
+        self.notion = Client(auth=open("token").read().strip())
+    def fetch(self):
+        data = self.notion.databases.query(database_id="d2cf192ae4204ee9958a4c579295a3df")
+        properties = [x["properties"] for x in data["results"]]
+        def sortKey(x): 
+            print(x)
+            return x["Name"]['title'][0]['plain_text']
+        properties.sort(key=sortKey)
+        simplified_datalist = []
+        for x in properties:
+            temp = {
+                "name": x["Name"]["title"][0]["plain_text"],
+                "tags": [item["name"] for item in x["Tags"]["multi_select"]],
+                "remarks": x['Remarks']['rich_text'][0]['plain_text'] if x['Remarks']['rich_text'] else ""
+            }
+            print(x)
+            simplified_datalist.append(temp)
+        return simplified_datalist
+
+
 
 def dateparser(datestring):
     if datestring == None: return None
@@ -42,5 +64,5 @@ def include(start, end):
     now = datetime.datetime.now(timezone)
     return use > now
 if __name__ == "__main__":
-    worklist = Worklist()
+    worklist = TodayActivities()
     print(worklist.fetch())

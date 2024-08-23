@@ -18,8 +18,9 @@ def save_pdf():
 def main():
   worklist = notion_grabber.Worklist()
   worklistData = worklist.fetch()
-  print(worklistData)
-  return render_template("index.html", worklistData=worklistData)
+  today = notion_grabber.TodayActivities()
+  todayData = today.fetch()
+  return render_template("index.html", worklistData=worklistData, todayData=todayData)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 t = Thread(target=save_pdf)
 t.start()
